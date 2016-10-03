@@ -21,11 +21,11 @@ Go to spark.apache.org and download spark-1.5.2-bin-hadoop2.6 version.
 
 Go to https://apps.twitter.com and create an app, save in your laptop consumer-key, consumer-secret, access_token and access_token_secret values.
 
-To run:
+To run the code:
 
 Execute elasticsearch:
 
-MacBook-Pro-Retina-de-Alonso:~ aironman$ elasticsearch 
+    $:~ aironman$ elasticsearch 
     [2016-10-03 16:49:49,879][INFO ][node                     ] [Rex Mundi] version[2.4.0], pid[52071], build[ce9f0c7/2016-08-29T09:14:17Z]
     [2016-10-03 16:49:49,880][INFO ][node                     ] [Rex Mundi] initializing ...
     [2016-10-03 16:49:50,425][INFO ][plugins                  ] [Rex Mundi] modules [reindex, lang-expression, lang-groovy], plugins [], sites []
@@ -46,7 +46,7 @@ MacBook-Pro-Retina-de-Alonso:~ aironman$ elasticsearch
 
 Execute kibana, as simple as put kibana in a terminal tag:
 
-MacBook-Pro-Retina-de-Alonso:clasificacion_tweets aironman$ kibana
+    $:clasificacion_tweets aironman$ kibana
     log   [17:14:59.962] [info][status][plugin:kibana] Status changed from uninitialized to green - Ready
     log   [17:14:59.988] [info][status][plugin:elasticsearch] Status changed from uninitialized to yellow - Waiting for Elasticsearch
     log   [17:15:00.001] [info][status][plugin:kbn_vislib_vis_types] Status changed from uninitialized to green - Ready
