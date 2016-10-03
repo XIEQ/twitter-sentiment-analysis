@@ -39,9 +39,11 @@ object TwitterSentimentAnalysis {
      System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
      val conf = new SparkConf().setAppName("TwitterSentimentAnalysis")
-     conf.set("es.nodes", conf.get("spark.es.nodes"))
-
-     val ssc = new StreamingContext(conf, Seconds(1))
+     //this does not work in local mode
+     //conf.set("es.nodes", conf.get("spark.es.nodes"))
+     //this works in local mode
+     conf.set("es.nodes.discovery","true")
+     val ssc = new StreamingContext(conf, Seconds(5))
 
      val tweets = TwitterUtils.createStream(ssc, None, filters)
 
