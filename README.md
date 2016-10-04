@@ -17,7 +17,32 @@ I am running this code in osx Sierra, so the best way is to install kibana and e
 
     brew install elasticsearch
 
-Go to spark.apache.org and download latest version, actual is spark-2.0.0-bin-hadoop2.7.tgz. Decommpress it whenenever you want.
+Go to spark.apache.org and download 1.5.2 version, actual is spark-2.0.0-bin-hadoop2.7.tgz, but it doesnt work actually because of 
+this exception:
+
+    at org.elasticsearch.spark.rdd.EsRDDWriter.write(EsRDDWriter.scala:42). 
+    ...
+
+launched by this portion of code:
+
+    tweets.foreachRDD{(rdd, time) =>
+           rdd.map(t => {
+             Map(
+               "user"-> t.getUser.getScreenName,
+               "created_at" -> t.getCreatedAt.toInstant.toString,
+               "location" -> Option(t.getGeoLocation).map(geo => { s"${geo.getLatitude},${geo.getLongitude}" }),
+               "text" -> t.getText,
+               "hashtags" -> t.getHashtagEntities.map(_.getText),
+               "retweet" -> t.getRetweetCount,
+               "language" -> detectLanguage(t.getText),
+               "sentiment" -> detectSentiment(t.getText).toString
+             )
+           }).saveToEs("twitter/tweet")
+         }
+
+Obviously the saveToEs method.
+
+Whatever, decommpress 1.5.2 version whenenever you want.
 
 Go to https://apps.twitter.com and create an app, save in your laptop consumer-key, consumer-secret, access_token and access_token_secret values.
 
@@ -79,9 +104,9 @@ In order to run the job, you have to clone the project and compile it with sbt a
 
 ie:
 
-Do you want to know what is going on with FARC?
+Do you want to know what is going on with FARC and paro? 
 
-    /spark-1.5.2/bin/spark-submit \
+    $HOME/spark-1.5.2/bin/spark-submit \
         --class com.github.vspiewak.TwitterSentimentAnalysis \
         --master local[2] \
         target/scala-2.10/twitter-sentiment-analysis-assembly-0.1-SNAPSHOT.jar \
@@ -89,7 +114,7 @@ Do you want to know what is going on with FARC?
         <consumer_secret> \
         <access_token> \
         <access_token_secret> \
-        FARC
+        FARC paro
 
 
 Docker setup (To test!)
