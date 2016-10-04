@@ -43,6 +43,7 @@ object TwitterSentimentAnalysis {
      //conf.set("es.nodes", conf.get("spark.es.nodes"))
      //this works in local mode
      conf.set("es.nodes.discovery","true")
+     //with one second, twitter could ban you, it should be better 5 seconds
      val ssc = new StreamingContext(conf, Seconds(5))
 
      val tweets = TwitterUtils.createStream(ssc, None, filters)

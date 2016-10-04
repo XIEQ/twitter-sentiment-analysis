@@ -17,7 +17,7 @@ I am running this code in osx Sierra, so the best way is to install kibana and e
 
     brew install elasticsearch
 
-Go to spark.apache.org and download spark-1.5.2-bin-hadoop2.6 version.
+Go to spark.apache.org and download latest version, actual is spark-2.0.0-bin-hadoop2.7.tgz. Decommpress it whenenever you want.
 
 Go to https://apps.twitter.com and create an app, save in your laptop consumer-key, consumer-secret, access_token and access_token_secret values.
 
